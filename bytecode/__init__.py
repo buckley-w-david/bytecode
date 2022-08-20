@@ -35,6 +35,7 @@ def bytecode(
         linetable_writer = io.BytesIO()
         last_pos = 0
         current_pos = 0
+        # We ignore the last two instructions because they will be the default return
         for instruction in instructions[:-2]:
             if state == State.SCAN_INSTRUCTION:
                 if (
