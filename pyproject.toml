@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "bytecode"
+version = "0.1.0"
+description = ""
+authors = ["David Buckley <david@davidbuckley.ca>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+black = "^22.6.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
