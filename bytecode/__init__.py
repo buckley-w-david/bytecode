@@ -50,9 +50,7 @@ def bytecode(
                     )
             elif state == State.SCAN_ARGUMENT:
                 if instruction.opcode == _LOAD_CONST:
-                    ni[1] = (
-                        instruction.argval if instruction.opcode == _LOAD_CONST else 0
-                    )
+                    ni[1] = instruction.argval
                     state = State.SKIP_TUPLE
                 elif instruction.opcode == _POP_TOP:
                     state = State.SCAN_INSTRUCTION
