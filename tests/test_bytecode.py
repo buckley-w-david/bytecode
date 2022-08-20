@@ -58,3 +58,36 @@ def test_extended():
         RETURN_VALUE
 
     assert return_extended() == "foo"
+
+def test_factorial():
+    # This test is mostly just to do something a little more complex
+    @bytecode.bytecode(constants=[1])
+    def factorial(n):
+        LOAD_CONST, 1
+        LOAD_FAST, 0
+
+        DUP_TOP
+        ROT_THREE
+        INPLACE_MULTIPLY
+        ROT_TWO
+
+        LOAD_CONST, 1
+        INPLACE_SUBTRACT
+
+        JUMP_IF_TRUE_OR_POP, 2
+
+        RETURN_VALUE
+
+    assert factorial(5) == 120
+
+def test_names(capsys):
+    @bytecode.bytecode(constants=["Hello, World!"], names=["print"])
+    def print_hello():
+        LOAD_GLOBAL, 0
+        LOAD_CONST, 1
+        CALL_FUNCTION, 1
+        RETURN_VALUE
+
+    print_hello()
+    captured = capsys.readouterr()
+    assert captured.out == "Hello, World!\n"
